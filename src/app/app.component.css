@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.f1{
+  font-family: "Gochi Hand", cursive;
+}
+.f2 {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+.f3 {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+
+.f4 {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+.f5 {
+  font-family: "Lilita One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+dialog[open] {
+  animation: appear .15s cubic-bezier(0, 1.8, 1, 1.8);
+}
+
+  dialog::backdrop {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(54, 54, 54, 0.5));
+    backdrop-filter: blur(3px);
+  }
+
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateX(-3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+table {
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input[type="button"] {
+  width: 100%;
+  padding: 20px 40px;
+  background-color: green;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+}
+
+input[type="text"] {
+  padding: 20px 30px;
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+.wall{
+  background-image: url(../assets/wall.png);
+  background-position: center;
+  background-repeat: no-repeat;
+   background-size: cover;
+   opacity: 50;
+}
+.wall2{
+  background-image: url(../assets/wall2.png);
+  background-position: center;
+  background-repeat: no-repeat;
+   background-size: cover;
+   opacity: 50;
+}
+.wall3{
+  background-image: url(../assets/wall3.png);
+  background-position: center;
+  background-repeat: no-repeat;
+   background-size: cover;
+   opacity: 50;
+}
+.wall4{
+  background-image: url(../assets/wall4.png);
+  background-position: center;
+  background-repeat: no-repeat;
+   background-size: cover;
+   opacity: 50;
+}
+.wall5{
+  background-image: url(../assets/wall5.png);
+  background-position: center;
+  background-repeat: no-repeat;
+   background-size: cover;
+   opacity: 50;
+}
+.wall6{
+  background-image: url(../assets/wall6.png);
+  background-position: center;
+  background-repeat: no-repeat;
+   background-size: cover;
+   opacity: 50;
+}
+

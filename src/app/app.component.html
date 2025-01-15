@@ -1,0 +1,1327 @@
+<div class="flex items-center justify-center w-full h-full">
+        <div class="bg-sky-100 wall3 border border-sky-600 px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5  lg:px-10 lg:py-6 mx-2 sm:mx-5 md:mx-8 lg:mx-10 my-5 rounded-lg shadow-lg  transition duration-300">
+              <nav class="flex items-center justify-between ">
+
+                          <dialog id="cours" class="modal flex flex-col min-h-screen">
+                            <div class="  bg-white  shadow-lg overflow-y-auto  h-full p-5 w-full ">
+                              <!-- Modal Header -->
+                              <div class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center border-b-4 bg-white shadow-md px-6 md:px-10 border-cyan-700">
+                                <h2 class="text-4xl md:text-5xl font-bold text-cyan-700 f2">Cours</h2>
+
+                                <form class="max-w-xs w-full md:max-w-md">
+                                  <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+                                  <div class="relative">
+                                    <input
+                                      [(ngModel)]="searchCours"
+                                      name="searchCours"
+                                      type="search"
+                                      id="default-search"
+                                      class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:border-transparent focus:ring-0"
+                                      placeholder="Rechercher..."
+                                      required
+                                    />
+                                    <button
+                                      type="submit"
+                                      class="absolute right-2.5 bottom-2.5 bg-cyan-700 text-white hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-4 py-2"
+                                    >
+                                      Search
+                                    </button>
+                                  </div>
+                                </form>
+
+                                <button onclick="document.getElementById('cours').close()" class="p-2 cursor-pointer md:p-4">
+                                  <i class="fa-solid fa-square-xmark text-3xl md:text-4xl text-red-300 hover:text-red-400 transition duration-200"></i>
+                                </button>
+                              </div>
+
+                              <!-- Modal Content -->
+                              <div class="flex flex-col items-center mt-16 py-4 w-full">
+                                <!-- Search Form -->
+
+
+                                <!-- Additional Content -->
+                                <div class="mt-6 text-gray-500">
+                                  <div class="p-5 pt-8 border ignore border-gray-200 not-prose rounded dark:border-gray-800 relative bg-gray-50 dark:bg-gray-800 shadow-md ">
+                                    <div class="max-w-5xl mx-auto" >
+                                        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-3 sm:gap-5 not-prose " >
+                                            <div *ngFor="let cours of filteredCourses"  target="_blank" class=" hover:shadow-md transition-all duration-200 flex flex-col items-start justify-between p-6 overflow-hidden rounded-xl border  bg-white">
+                                                <img src="../assets/cours/c{{cours.id}}.png" class="w-36 h-36" style="display: block; margin: 0 auto;" alt="">
+                                                <div>
+                                                  <button (click)="downloadPDF(cours.id)" class="flex items-center justify-between w-full my-4">
+                                                    <span class="hover:shadow -translate-x-2 flex-shrink-0 hover:translate-x-0 py-1 px-2.5 text-[0.6rem] hover:opacity-100 transition-all ease-out duration-200 rounded-lg bg-blue-50 dark:bg-cyan-600 dark:text-white text-cyan-600 flex items-center justify-center">
+                                                        <span class="f4">Télécharger</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                                        class="w-3 translate-x-0.5 h-3">
+                                                        <path fill-rule="evenodd"
+                                                            d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    </span>
+                                                    </button>
+                                                  <h1 class="relative text-start text-cyan-800 pb-2 f3 text-lg">{{cours.name}}</h1>
+                                                  <span class="relative text-xs md:text-sm text-gray-600 dark:text-gray-400 f4">{{cours.description}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-center">
+                                          <p *ngIf="errorMessage" class="text-red-600  text-center">{{ errorMessage }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                              </div>
+                            </div>
+                            <footer class="text-sm  bg-cyan-800 w-full px-24">
+                              <div class="py-4  sm:flex justify-between text-slate-100">
+                                  <div class="mb-6 sm:mb-0 sm:flex">
+                                      <p class="f4">All Rights Reserved</p>
+                                      <p class="sm:ml-4 sm:pl-4 sm:border-l sm:border-slate-200">
+                                        <a class="hover:text-slate-900 f2" href="/brand">Plongez dans l'univers de l'hydraulique</a>
+                                      </p>
+                                  </div>
+                                  <div class="flex space-x-10 text-cyan-500 text-xl">
+                                    <a href="https://www.linkedin.com/in/bilal-izem-267284175" class="hover:text-cyan-300" target="_blank" rel="noopener noreferrer">
+                                      <i class="fa-brands fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/bilal-izem" class="hover:text-cyan-300" class="hover:text-cyan-300" target="_blank" rel="noopener noreferrer">
+                                      <i class="fa-brands fa-square-github"></i>
+                                    </a>
+                                  </div>
+                              </div>
+                            </footer>
+                          </dialog>
+                          <dialog id="exercices" class="modal flex flex-col min-h-screen">
+                            <div class="  bg-white  shadow-lg overflow-y-auto p-5 h-full w-full ">
+                              <!-- Modal Header -->
+                              <div class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center border-b-4 bg-white shadow-md px-6 md:px-10 border-cyan-700">
+                                <h2 class="text-4xl md:text-5xl font-bold text-cyan-700 f2">Exercices</h2>
+
+                                <form class="max-w-xs w-full md:max-w-md">
+                                  <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+                                  <div class="relative">
+                                    <input
+                                      [(ngModel)]="searchExercices"
+                                      name="searchExercices"
+                                      type="search"
+                                      id="default-search"
+                                      class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:border-transparent focus:ring-0"
+                                      placeholder="Rechercher..."
+                                      required
+                                    />
+                                    <button
+                                      type="submit"
+                                      class="absolute right-2.5 bottom-2.5 bg-cyan-700 text-white hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-4 py-2"
+                                    >
+                                      Search
+                                    </button>
+                                  </div>
+                                </form>
+
+                                <button onclick="document.getElementById('exercices').close()" class="p-2 cursor-pointer md:p-4">
+                                  <i class="fa-solid fa-square-xmark text-3xl md:text-4xl text-red-300 hover:text-red-400 transition duration-200"></i>
+                                </button>
+                              </div>
+
+                              <!-- Modal Content -->
+                              <div class="flex flex-col items-center pt-16">
+                                <!-- Search Form -->
+                                <!-- Additional Content -->
+                                <div class="mt-6 text-gray-500 ">
+                                  <div class="p-5 pt-8 border ignore border-gray-200 not-prose rounded dark:border-gray-800 relative bg-gray-50 dark:bg-gray-800 shado">
+                                    <div class="max-w-5xl mx-auto" >
+                                        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-3 sm:gap-5 not-prose " >
+                                            <div *ngFor="let exo of paginatedExercices"  target="_blank" class="relative hover:shadow-md transition-all duration-200 flex flex-col items-start justify-between p-6 overflow-hidden rounded-xl border bg-white group">
+                                              <span class="absolute w-full h-full bg-white dark:bg-black inset-0 dark:group-hover:bg-gray-900 group-hover:bg-cyan-50 group-hover:bg-opacity-30"></span>
+                                              <img src="../assets/exo/e{{exo.id}}.webp" class="relative w-full h-auto rounded-lg border shadow-md">
+                                                <h1 class="relative text-cyan-800 py-2 f3 text-lg">{{exo.name}}</h1>
+                                                <span class="relative text-xs md:text-sm text-gray-600 dark:text-gray-400 f4">{{exo.description}}</span>
+                                                <button (click)="downloadPDFExercices(exo.id)" class="flex items-center justify-between w-full mt-4 ">
+                                                  <span class="opacity-0 -translate-x-2 flex-shrink-0 group-hover:translate-x-0 py-1 px-2.5 text-[0.6rem] group-hover:opacity-100 transition-all ease-out duration-200 rounded-lg bg-blue-50 dark:bg-cyan-600 dark:text-white text-cyan-600 flex items-center justify-center">
+                                                      <span class="f4">Télécharger</span>
+                                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3 translate-x-0.5 h-3"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"></path></svg>
+                                                  </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-center items-center my-8 gap-4">
+                                          <button (click)="previousPage()" [disabled]="currentPage === 1" class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300 transition"><i class="fa-solid fa-angle-left"></i></button>
+                                          <div class="flex justify-center items-center gap-2">
+                                            <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+                                              <button
+                                                (click)="goToPage(i + 1)"
+                                                [class.active]="currentPage === i + 1"
+                                                class="mx-1 px-3 py-1 border rounded transition hover:bg-gray-300"
+                                                [ngClass]="{'bg-slate-500 text-white': currentPage === i + 1}"
+                                                [disabled]="currentPage === i + 1">
+                                                {{i + 1}}
+                                              </button>
+                                            </ng-container>
+                                          </div>
+                                          <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300 transition"><i class="fa-solid fa-angle-right"></i></button>
+                                        </div>
+
+
+                                        <div class="flex items-center justify-center">
+                                          <p *ngIf="errorMessageExercices" class="text-red-600  text-center">{{ errorMessageExercices }}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                </div>
+                              </div>
+                            </div>
+                            <footer class="text-sm  bg-cyan-800 w-full px-24">
+                              <div class="py-4  sm:flex justify-between text-slate-100">
+                                  <div class="mb-6 sm:mb-0 sm:flex">
+                                      <p class="f4">All Rights Reserved</p>
+                                      <p class="sm:ml-4 sm:pl-4 sm:border-l sm:border-slate-200">
+                                        <a class="hover:text-slate-900 f2" href="/brand">Plongez dans l'univers de l'hydraulique</a>
+                                      </p>
+                                  </div>
+                                  <div class="flex space-x-10 text-cyan-500 text-xl">
+                                    <a href="https://www.linkedin.com/in/bilal-izem-267284175" class="hover:text-cyan-300" target="_blank" rel="noopener noreferrer">
+                                      <i class="fa-brands fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/bilal-izem" class="hover:text-cyan-300" class="hover:text-cyan-300" target="_blank" rel="noopener noreferrer">
+                                      <i class="fa-brands fa-square-github"></i>
+                                    </a>
+                                  </div>
+                              </div>
+                            </footer>
+                          </dialog>
+                          <dialog id="incontournables" class="modal flex flex-col min-h-full">
+                            <div class="  bg-slate-100 overflow-y-auto px-5 py-4 h-full w-full ">
+                              <div class="fixed  top-0 left-0 right-0 z-50 flex justify-between items-center border-b-4 bg-white shadow-md px-6 border-cyan-700">
+                                <h2 class="text-2xl font-bold text-cyan-700 f2">Les Incontournables</h2>
+
+                                <button onclick="document.getElementById('incontournables').close()" class="p-2 cursor-pointer">
+                                  <i class="fa-solid fa-square-xmark text-4xl text-red-300 hover:text-red-400 transition duration-200"></i>
+                                </button>
+                              </div>
+
+                              <div class=" w-full flex flex-row gap-5 px-3 md:px-6 lg:px-10 md:flex-row">
+                                <div class="hidden md:w-1/3 lg:w-1/4 py-4 md:block items-center justify-center">
+                                  <ul class="sticky top-12 flex flex-col gap-2 p-2 rounded-xl" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+                                    <li role="presentation" class="border-sky-500 mt-20 border p-2 rounded-lg bg-white shadow-md">
+                                        <button class="" id="generale-tab" data-tabs-target="#generale" type="button" role="tab" aria-controls="generale" aria-selected="true">
+                                            Hydraulique Générale
+                                        </button>
+                                    </li>
+                                    <li role="presentation" class="border-sky-500 border p-2 rounded-lg bg-white shadow-md">
+                                        <button class="" id="urbaine-tab" data-tabs-target="#urbaine" type="button" role="tab" aria-controls="urbaine" aria-selected="false">
+                                            Hydraulique Urbaine
+                                        </button>
+                                    </li>
+                                    <li role="presentation" class="border-sky-500 border p-2 rounded-lg bg-white shadow-md">
+                                        <button class="" id="hydrologie-tab" data-tabs-target="#hydrologie" type="button" role="tab" aria-controls="hydrologie" aria-selected="false">
+                                            Hydrologie
+                                        </button>
+                                    </li>
+                                    <li role="presentation" class="border-sky-500 border p-2 rounded-lg bg-white shadow-md">
+                                        <button class="" id="qualite-tab" data-tabs-target="#qualite" type="button" role="tab" aria-controls="qualite" aria-selected="false">
+                                            Qualité des Eaux
+                                        </button>
+                                    </li>
+                                    <li role="presentation" class="border-sky-500 border p-2 rounded-lg bg-white shadow-md">
+                                        <button class="" id="gestion-tab" data-tabs-target="#gestion" type="button" role="tab" aria-controls="gestion" aria-selected="false">
+                                          Gestion des ressources en eaux
+                                        </button>
+                                    </li>
+                                    <li role="presentation" class="border-sky-500 border p-2 rounded-lg bg-white shadow-md">
+                                      <button class="" id="assainissement-tab" data-tabs-target="#assainissement" type="button" role="tab" aria-controls="assainissement" aria-selected="false">
+                                        Assainissement
+                                      </button>
+                                    </li>
+                                    <li role="presentation" class="border-sky-500 border p-2 rounded-lg bg-white shadow-md">
+                                      <button class="" id="epuration-tab" data-tabs-target="#epuration" type="button" role="tab" aria-controls="epuration" aria-selected="false">
+                                        Epuration des eaux usées
+                                      </button>
+                                    </li>
+                                    <li>
+                                      <button  (click)="downloadHyd()" type="button" class="focus:outline-black text-white text-sm p-4 mt-10 w-full border-b-4 border-slate-600 bg-slate-500 hover:bg-slate-400 rounded">Télécharger</button>
+                                    </li>
+                                  </ul>
+                                </div>
+
+
+
+
+
+                                <div class="md:w-2/3 lg:w-3/4 w-full min-h-screen overflow-y-auto mt-20 border shadow-lg rounded-lg border-sky-500">
+
+
+                                  <div class="drawer flex md:hidden z-40">
+                                    <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+                                    <div class="drawer-content">
+                                      <!-- Page content here -->
+                                      <label for="my-drawer" class="btn bg-white m-5 border border-sky-500 text-sky-500 hover:bg-white drawer-button ">
+                                        <span>
+                                          Choisir votre cours
+                                      </span>
+                                      <svg class="w-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          viewBox="0 0 24 24" class="w-6 h-6 ml-2">
+                                          <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                      </svg>
+                                      </label>
+                                    </div>
+                                    <div class="drawer-side pt-10">
+                                      <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+                                      <ul class="menu bg-slate-200 text-base-content min-h-full w-80 p-4 ">
+                                        <ul class="sticky top-12 flex flex-col gap-2 p-2 rounded-xl" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+                                          <li role="presentation" class="border-sky-500 border p-2 rounded-lg bg-white shadow-md">
+                                              <button class="" id="generale-tab" data-tabs-target="#generale" type="button" role="tab" aria-controls="generale" aria-selected="true">
+                                                  Hydraulique Générale
+                                              </button>
+                                          </li>
+                                          <li role="presentation" class="border-sky-500 border p-2 rounded-lg bg-white shadow-md">
+                                              <button class="" id="urbaine-tab" data-tabs-target="#urbaine" type="button" role="tab" aria-controls="urbaine" aria-selected="false">
+                                                  Hydraulique Urbaine
+                                              </button>
+                                          </li>
+                                          <li role="presentation" class="border-sky-500 border p-2 rounded-lg bg-white shadow-md">
+                                              <button class="" id="hydrologie-tab" data-tabs-target="#hydrologie" type="button" role="tab" aria-controls="hydrologie" aria-selected="false">
+                                                  Hydrologie
+                                              </button>
+                                          </li>
+                                          <li role="presentation" class="border-sky-500 border p-2 rounded-lg bg-white shadow-md">
+                                              <button class="" id="qualite-tab" data-tabs-target="#qualite" type="button" role="tab" aria-controls="qualite" aria-selected="false">
+                                                  Qualité des Eaux
+                                              </button>
+                                          </li>
+                                          <li role="presentation" class="border-sky-500 border p-2 rounded-lg bg-white shadow-md">
+                                              <button class="" id="gestion-tab" data-tabs-target="#gestion" type="button" role="tab" aria-controls="gestion" aria-selected="false">
+                                                Gestion des ressources en eaux
+                                              </button>
+                                          </li>
+                                          <li role="presentation" class="border-sky-500 border p-2 rounded-lg bg-white shadow-md">
+                                            <button class="" id="assainissement-tab" data-tabs-target="#assainissement" type="button" role="tab" aria-controls="assainissement" aria-selected="false">
+                                              Assainissement
+                                            </button>
+                                          </li>
+                                          <li role="presentation" class="border-sky-500 border p-2 rounded-lg bg-white shadow-md">
+                                            <button class="" id="epuration-tab" data-tabs-target="#epuration" type="button" role="tab" aria-controls="epuration" aria-selected="false">
+                                              Epuration des eaux usées
+                                            </button>
+                                          </li>
+                                          <li class="flex items-center justify-center text-center">
+                                            <button  (click)="downloadHyd()" type="button" class=" text-center text-white text-sm mt-10 w-full border-b-4 border-sky-600 bg-sky-600 hover:bg-sky-500 rounded">Télécharger</button>
+                                          </li>
+                                        </ul>
+                                      </ul>
+                                    </div>
+                                  </div>
+
+
+                                    <div id="myTabContent" class=" bg-white p-2 md:p-4">
+                                        <div class=" p-4 rounded-lg  hidden" id="generale" role="tabpanel" aria-labelledby="generale-tab">
+                                          <div class="flex items-center justify-between">
+                                            <h1 class=" font-semibold text-cyan-700 mb-4 underline text-2xl hidden md:flex">Définitions</h1>
+                                            <button (click)=" downloadInc(1)" class="group relative h-12 w-60 overflow-hidden rounded-lg bg-white shadow border">
+                                              <div class="absolute inset-0 w-3 bg-cyan-600 transition-all duration-[300ms] ease-out group-hover:w-full"></div>
+                                              <span class="relative text-black group-hover:text-white"><i class="fa-solid fa-download"></i> Télécharger le résumé</span>
+                                            </button>
+                                          </div>
+                                                  <div class="overflow-x-auto my-4">
+                                                    <table class="table">
+                                                      <!-- head -->
+                                                      <tbody>
+                                                        <!-- row 1 -->
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">L’hydraulique</td>
+                                                          <td>est la science et la technique qui étudie l’eau sous l’aspect aussi bien statique
+                                                            que dynamique. Elle essai de décrire, analyser et expliquer un certain nombre de phénomènes
+                                                            ou propriétés à travers des lois connues de sciences exactes.</td>
+                                                        </tr>
+                                                        <!-- row 2 -->
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">L’hydrodynamique</td>
+                                                          <td> est de déterminer en un point donné la vitesse, la pression, le débit et leurs
+                                                            relations au cours de l’écoulement.</td>
+                                                        </tr>
+                                                        <!-- row 3 -->
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">L’Hydrostatique</td>
+                                                          <td>est l’étude des liquides au repos.</td>
+                                                        </tr>
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">Un écoulement en charge</td>
+                                                          <td>s’il n’y a pas de contact entre le liquide et l’atmosphère. C’est le cas
+                                                            des écoulements dans les conduites.</td>
+                                                        </tr>
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">Un écoulement à surface libre</td>
+                                                          <td>si le liquide s’écoule en contact avec l’atmosphère, c’est le cas
+                                                            des écoulements dans les canaux découverts et dans les oueds.</td>
+                                                        </tr>
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">Ecoulement permanant</td>
+                                                          <td> est un écoulement où les caractéristiques d’une particule liquide ne
+                                                            dépendent que de la position du point M.</td>
+                                                        </tr>
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">Ecoulement non permanant</td>
+                                                          <td>fait intervenir x, y, z et t.</td>
+                                                        </tr>
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">La ligne de courant</td>
+                                                          <td>une ligne qui a un instant donné est tangente en chacun de ses points au
+                                                            vecteur vitesse.</td>
+                                                        </tr>
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">Tube de courant</td>
+                                                          <td>l’ensemble des lignes de courant appuyées sur un contour fermé placé à
+                                                            l’intérieur de l’écoulement.</td>
+                                                        </tr>
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">L’écoulement laminaire</td>
+                                                          <td>si les particules liquides se déplacent suivant des filets parallèles et qui
+                                                            ne changent pas tout le long de l’écoulement.</td>
+                                                        </tr>
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">L’écoulement turbulent</td>
+                                                          <td>si au contraire, les particules liquides suivent des trajectoires non
+                                                            régulières et non rectilignes.</td>
+                                                        </tr>
+
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">Rayon hydraulique</td>
+                                                          <td>section mouillée / périmètre mouillé.</td>
+                                                        </tr>
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">Le manomètre</td>
+                                                          <td>est un appareil qui donne la pression manométrique en un point donné.</td>
+                                                        </tr>
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">Le baromètre</td>
+                                                          <td>appareils qui mesurent uniquement la pression atmosphérique.</td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+                                                  <h1 class="text-2xl font-semibold text-cyan-700 mt-10 underline">Systèmes d'unités</h1>
+                                                  <div class="overflow-x-auto my-2">
+                                                    <p>En mécanique des fluides, le système d’unités SI (système international) comporte trois unités
+                                                      primaires à partir desquelles toutes les autres quantités peuvent être décrites.</p>
+                                                      <div class="max-w-4xl mx-auto  p-6 ">
+                                                        <table class="w-full border-collapse">
+                                                            <thead>
+                                                                <tr class="bg-gray-200 border-b">
+                                                                    <th class="py-2 px-4 text-left text-gray-600 font-semibold">Grandeur de base</th>
+                                                                    <th class="py-2 px-4 text-left text-gray-600 font-semibold">Nom de l’unité</th>
+                                                                    <th class="py-2 px-4 text-left text-gray-600 font-semibold">Symbole</th>
+                                                                    <th class="py-2 px-4 text-left text-gray-600 font-semibold">Dimension</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="border-b">
+                                                                    <td class="py-2 px-4 text-gray-800">Longueur</td>
+                                                                    <td class="py-2 px-4 text-gray-800">Mètre</td>
+                                                                    <td class="py-2 px-4 text-gray-800">m</td>
+                                                                    <td class="py-2 px-4 text-gray-800">L</td>
+                                                                </tr>
+                                                                <tr class="bg-gray-50 border-b">
+                                                                    <td class="py-2 px-4 text-gray-800">Masse</td>
+                                                                    <td class="py-2 px-4 text-gray-800">Kilogramme</td>
+                                                                    <td class="py-2 px-4 text-gray-800">kg</td>
+                                                                    <td class="py-2 px-4 text-gray-800">M</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="py-2 px-4 text-gray-800">Temps</td>
+                                                                    <td class="py-2 px-4 text-gray-800">Seconde</td>
+                                                                    <td class="py-2 px-4 text-gray-800">s</td>
+                                                                    <td class="py-2 px-4 text-gray-800">T</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <p>Les unités si des différents caractéristiques utilisées en mécanique des fluides : </p>
+                                                    <div class="max-w-4xl mx-auto mt-2 p-6 ">
+                                                      <table class="w-full border-collapse">
+                                                          <thead>
+                                                              <tr class="bg-gray-200 border-b">
+                                                                  <th class="py-2 px-4 text-left text-gray-600 font-semibold">Caractéristique</th>
+                                                                  <th class="py-2 px-4 text-left text-gray-600 font-semibold">Unité SI</th>
+                                                              </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                              <tr class="border-b">
+                                                                  <td class="py-2 px-4 text-gray-800">Vitesse</td>
+                                                                  <td class="py-2 px-4 text-gray-800">m/s, m.s<sup>-1</sup> LT<sup>-1</sup></td>
+                                                              </tr>
+                                                              <tr class="bg-gray-50 border-b">
+                                                                  <td class="py-2 px-4 text-gray-800">Accélération</td>
+                                                                  <td class="py-2 px-4 text-gray-800">m/s<sup>2</sup>, m.s<sup>-2</sup> LT<sup>-2</sup></td>
+                                                              </tr>
+                                                              <tr class="border-b">
+                                                                  <td class="py-2 px-4 text-gray-800">Force</td>
+                                                                  <td class="py-2 px-4 text-gray-800">Kg.m/s<sup>2</sup>, N (Newton), kg.m.s<sup>-2</sup> MLT<sup>-2</sup></td>
+                                                              </tr>
+                                                              <tr class="bg-gray-50 border-b">
+                                                                  <td class="py-2 px-4 text-gray-800">Énergie, travail</td>
+                                                                  <td class="py-2 px-4 text-gray-800">Kg.m<sup>2</sup>/s<sup>2</sup>, N.m, J (Joule), kg.m<sup>2</sup>.s<sup>-2</sup> ML<sup>2</sup>T<sup>-2</sup></td>
+                                                              </tr>
+                                                              <tr class="border-b">
+                                                                  <td class="py-2 px-4 text-gray-800">Puissance</td>
+                                                                  <td class="py-2 px-4 text-gray-800">Kg.m<sup>2</sup>/s<sup>3</sup>, N.m/s, W (Watt), kg.m<sup>2</sup>.s<sup>-3</sup> ML<sup>2</sup>T<sup>-3</sup></td>
+                                                              </tr>
+                                                              <tr class="bg-gray-50 border-b">
+                                                                  <td class="py-2 px-4 text-gray-800">Pression</td>
+                                                                  <td class="py-2 px-4 text-gray-800">Kg/m/s<sup>2</sup>, N/m<sup>2</sup>, Pa (Pascal), kg.m<sup>-1</sup>.s<sup>-2</sup> ML<sup>-1</sup>T<sup>-2</sup></td>
+                                                              </tr>
+                                                              <tr class="border-b">
+                                                                  <td class="py-2 px-4 text-gray-800">Masse volumique</td>
+                                                                  <td class="py-2 px-4 text-gray-800">Kg/m<sup>3</sup>, kg.m<sup>-3</sup> ML<sup>-3</sup></td>
+                                                              </tr>
+                                                              <tr class="bg-gray-50 border-b">
+                                                                  <td class="py-2 px-4 text-gray-800">Poids spécifique</td>
+                                                                  <td class="py-2 px-4 text-gray-800">Kg/m<sup>2</sup>/s<sup>2</sup>, N/m<sup>3</sup>, kg.m<sup>-2</sup>.s<sup>-2</sup> ML<sup>-2</sup>T<sup>-2</sup></td>
+                                                              </tr>
+                                                              <tr>
+                                                                  <td class="py-2 px-4 text-gray-800">Viscosité dynamique</td>
+                                                                  <td class="py-2 px-4 text-gray-800">Kg/m/s, N.s/m<sup>2</sup>, kg.m<sup>-1</sup>.s<sup>-1</sup> ML<sup>-1</sup>T<sup>-1</sup></td>
+                                                              </tr>
+                                                          </tbody>
+                                                      </table>
+                                                  </div>
+
+
+                                                </div>
+                                        </div>
+                                        <div class="p-4 rounded-lg  hidden" id="urbaine" role="tabpanel" aria-labelledby="urbaine-tab">
+                                                  <div class="flex items-center justify-between">
+                                                    <h1 class=" font-semibold text-cyan-700 mb-4 underline text-2xl hidden md:flex">Définitions</h1>
+                                                    <button (click)=" downloadInc(2)" class="group relative h-12 w-60 overflow-hidden rounded-lg bg-white shadow border">
+                                                      <div class="absolute inset-0 w-3 bg-cyan-600 transition-all duration-[300ms] ease-out group-hover:w-full"></div>
+                                                      <span class="relative text-black group-hover:text-white"><i class="fa-solid fa-download"></i> Télécharger le résumé</span>
+                                                    </button>
+                                                  </div>
+
+                                                  <div class="overflow-x-auto my-4">
+                                                    <table class="table">
+                                                      <!-- head -->
+                                                      <tbody>
+                                                        <!-- row 1 -->
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">Pompe Hydraulique</td>
+                                                          <td>est une machine constituée d’un ensemble d’organes
+                                                            électromécaniques aspirant l’eau au niveau d’un point pour le refouler vers un autre.</td>
+                                                        </tr>
+                                                        <!-- row 2 -->
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">HMT</td>
+                                                          <td>est la somme de la hauteur géométrique et la perte de charge</td>
+                                                        </tr>
+                                                        <!-- row 3 -->
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">La cavitation</td>
+                                                          <td>est une formation de bulles de vapeur due à une baisse de pression lors de
+                                                            l’aspiration, ceci occasionne une détérioration du matériel.</td>
+                                                        </tr>
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">La pression de service</td>
+                                                          <td>est la pression maximale à laquelle peut résister une conduite donnée
+                                                            sans éclatement ou fissuration.</td>
+                                                        </tr>
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">La classe d’une conduite</td>
+                                                          <td>est la pression à laquelle elle est éprouvée en usine. Il est recommandé
+                                                            d’utiliser des conduites dont la classe est le double de la pression de service.</td>
+                                                        </tr>
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">Le coup de Bélier</td>
+                                                          <td>dans une conduite apparaît au moment de variation brusque de la vitesse
+                                                            d’écoulement par suite d’une fermeture ou ouverture rapide de la vanne, soit d’un brusque
+                                                            arrêt de la pompe.</td>
+                                                        </tr>
+                                                        <tr class="hover">
+                                                          <td class="font-semibold">Les réseaux de distribution</td>
+                                                          <td>est un ensemble de canalisations et d’équipements destinés à
+                                                            desservir les utilisateurs ou abonnés à partir d’un réservoir de stockage.</td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                    <h1 class=" font-semibold text-cyan-700 mb-4 underline text-2xl mt-10">Cycle urbain de l'eau</h1>
+                                                    <div class="flex items-center justify-center">
+                                                      <img src="../assets/cue1.png" class="p-10" alt="">
+                                                    </div>
+                                                    <h1 class=" font-semibold text-cyan-700 underline text-2xl mt-10">Chiffres clés</h1>
+                                                    <div class="flex items-center justify-center">
+                                                      <img src="../assets/cem.svg" class="p-10" alt="">
+                                                    </div>
+                                                    <div class="flex gap-5 items-center ">
+                                                      <p class="underline font-bold text-sm">Lire plus >>></p>
+                                                      <a href="../assets/Avenir de l'eau.pdf" class="relative text-black hover:text-gray-400 cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-700 before:absolute before:bg-gray-400 before:origin-center before:h-[1px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-700 after:absolute after:bg-gray-400 after:origin-center after:h-[1px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]" target="_blank">"QUEL AVENIR DE L’EAU AU MAROC ?"</a>
+                                                    </div>
+                                                  </div>
+
+
+                                        </div>
+                                        <div class="p-4 rounded-lg  hidden" id="hydrologie" role="tabpanel" aria-labelledby="hydrologie-tab">
+                                          <div class="flex items-center justify-between">
+                                            <h1 class=" font-semibold text-cyan-700 mb-4 underline text-2xl hidden md:flex">Définitions</h1>
+                                            <button (click)=" downloadInc(3)" class="group relative h-12 w-60 overflow-hidden rounded-lg bg-white shadow border">
+                                              <div class="absolute inset-0 w-3 bg-cyan-600 transition-all duration-[300ms] ease-out group-hover:w-full"></div>
+                                              <span class="relative text-black group-hover:text-white"><i class="fa-solid fa-download"></i> Télécharger le résumé</span>
+                                            </button>
+                                          </div>
+                                          <div class="overflow-x-auto my-4">
+                                            <table class="table">
+                                              <!-- head -->
+                                              <tbody>
+                                                <!-- row 1 -->
+                                                <tr class="hover">
+                                                  <td class="font-semibold">L’hydrologie</td>
+                                                  <td>est la science qui étudie le cycle de l’eau ainsi que ses paramètres fondamentaux :
+                                                    pluie, ruissellement, infiltration, évapotranspiration.</td>
+                                                </tr>
+                                                <!-- row 2 -->
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Bassin versant</td>
+                                                  <td>ou l’air d’apport est la surface pour laquelle tous les écoulements dus aux
+                                                    précipitations les traversent la section jusqu’à l’exutoire, c’est la surface drainée par le cours
+                                                    d’eau et ses affluents en amont de la surface.</td>
+                                                </tr>
+                                                <!-- row 3 -->
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Précipitations</td>
+                                                  <td>toutes les formes de l'eau à l'état liquide ou solide provenant de l'atmosphère, mesurées à l’aide d’un pluviomètre ou pluviographe.</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Ruissellement</td>
+                                                  <td>C’est l’écoulement en surface et qui est favorisé par un sol imperméable et une
+                                                    pente assez importante (déterminé par jaugeage au niveau des oueds).</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Infiltration</td>
+                                                  <td>C’est la partie d’eau qui rejoint le sous-sol pour alimenter les nappes d’eau
+                                                    souterraines.</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Évapotranspiration</td>
+                                                  <td>perte d’eau dans l’atmosphère qui se produit sur un sol nu et à l’intérieur des plantes.
+                                                  </td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Les averses</td>
+                                                  <td>sont un ensemble de pluies associées à une même perturbation météorologique.</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Une nappe d’eau souterraine</td>
+                                                  <td>ou aquifère est un réservoir d’eau souterraine continu avec des
+                                                    circulations d’eau plus ou moins importantes dans une roche magasin.</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                            <h1 class=" font-semibold text-cyan-700  underline text-2xl mt-10">Cycle Hydrologique</h1>
+                                            <div class="flex items-center justify-center">
+                                              <img src="../assets/Schema-dch.png" class="p-10" alt="">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="p-4 rounded-lg  hidden" id="qualite" role="tabpanel" aria-labelledby="qualite-tab">
+                                          <div class="flex items-center justify-between">
+                                            <h1 class=" font-semibold text-cyan-700 mb-4 underline text-2xl hidden md:flex">Définitions</h1>
+                                            <button (click)=" downloadInc(4)" class="group relative h-12 w-60 overflow-hidden rounded-lg bg-white shadow border">
+                                              <div class="absolute inset-0 w-3 bg-cyan-600 transition-all duration-[300ms] ease-out group-hover:w-full"></div>
+                                              <span class="relative text-black group-hover:text-white"><i class="fa-solid fa-download"></i> Télécharger le résumé</span>
+                                            </button>
+                                          </div>
+                                          <div class="overflow-x-auto my-4">
+                                            <table class="table">
+                                              <!-- head -->
+                                              <tbody>
+                                                <!-- row 1 -->
+                                                <tr class="hover">
+                                                  <td class="font-semibold">L’eau</td>
+                                                  <td>est une molécule plane constituée par deux atomes d’hydrogène et un atome d’oxygène.</td>
+                                                </tr>
+                                                <!-- row 2 -->
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Les germes aérobies </td>
+                                                  <td>sont ceux qui ne se développent qu’en présence de l’oxygène de l’air, sinon
+                                                    on parle de germes anaérobies.</td>
+                                                </tr>
+                                                <!-- row 3 -->
+                                                <tr class="hover">
+                                                  <td class="font-semibold">La DBO </td>
+                                                  <td>(exprimé en mg d’O2 /litre)  correspond à la quantité d’oxygène
+                                                    consommée par les eaux usées pour oxyder la matière organique (5 jours).
+                                                    </td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">La DCO</td>
+                                                  <td> est un paramètre permettant d’évaluer la charge polluante d’un effluent. C’est
+                                                    la consommation en oxygène par les oxydants chimiques forts pour oxyder la totalité
+                                                    des substances organiques et minérales de l’eau (2 heures).</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Station de traitement</td>
+                                                  <td>un ouvrage consiste à traiter les eaux capter dans la nature afin de
+                                                    rendre leur qualité conforme aux normes admises.</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                            <h1 class=" font-semibold text-cyan-700  underline text-2xl mt-10">Phases de traitement de l'eau</h1>
+                                            <div class="flex items-center justify-center">
+                                              <img src="../assets/te.gif" class="p-10" alt="">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="p-4 rounded-lg  hidden" id="gestion" role="tabpanel" aria-labelledby="gestion-tab">
+                                          <div class="flex items-center justify-between">
+                                            <h1 class=" font-semibold text-cyan-700 mb-4 underline text-2xl hidden md:flex">Définitions</h1>
+                                            <button (click)=" downloadInc(5)" class="group relative h-12 w-60 overflow-hidden rounded-lg bg-white shadow border">
+                                              <div class="absolute inset-0 w-3 bg-cyan-600 transition-all duration-[300ms] ease-out group-hover:w-full"></div>
+                                              <span class="relative text-black group-hover:text-white"><i class="fa-solid fa-download"></i> Télécharger le résumé</span>
+                                            </button>
+                                          </div>
+                                          <div class="overflow-x-auto my-4">
+                                            <h1 class="my-5">Une bonne gestion de l’eau est celle qui tient compte de tous les paramètres du contexte de la production et de mobilisation, à savoir :</h1>
+                                            <table class="table">
+                                              <!-- head -->
+                                              <tbody>
+                                                <!-- row 1 -->
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Aspect technique</td>
+                                                  <td>optimisation des techniques et des procédés.</td>
+                                                </tr>
+                                                <!-- row 2 -->
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Aspect économique</td>
+                                                  <td>tirer le meilleur profit d’un m3 produit ou mobilisé.</td>
+                                                </tr>
+                                                <!-- row 3 -->
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Aspect social</td>
+                                                  <td>éviter les situations conflictuelles dont l’origine est l’eau.</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Aspect environnemental</td>
+                                                  <td>les projets hydrauliques doivent s’inscrire dans une vision
+                                                    respectueuse de l’environnement.</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Aspect politique</td>
+                                                  <td> organisation du secteur et responsabilisation des institutions et
+                                                    organismes.
+                                                    </td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Aspect institutionnel</td>
+                                                  <td>l’eau doit être un facteur de stabilité politique.</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Aspect législatif</td>
+                                                  <td>élaboration et respect des textes réglementaires.</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Aspect médiatique</td>
+                                                  <td>information et sensibilisation du grand public sur les problèmes de
+                                                    l’eau.</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                            <h1 class=" font-semibold text-cyan-700  underline text-2xl mt-10">Aperçu historique</h1>
+                                            <div class="flex items-center justify-center">
+                                              <img src="../assets/ge.png" class="p-10" alt="">
+                                            </div>
+                                            <h1 class=" font-semibold text-cyan-700  underline text-2xl mt-10">Les Plans Directeurs d’Aménagement Intégrée des Ressources en Eau (PDAIRE)</h1>
+                                            <div class="flex items-center justify-center">
+                                              <img src="../assets/ge.webp" class="border m-5 shadow-md" alt="">
+                                            </div>
+                                            <div class="flex gap-5 items-center mt-5">
+                                              <p class="underline font-bold text-sm">Lire plus >>></p>
+                                              <a href="../assets/le secteur de l'eau au maroc 2023.pdf" class="relative text-black hover:text-gray-400 cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-700 before:absolute before:bg-gray-400 before:origin-center before:h-[1px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-700 after:absolute after:bg-gray-400 after:origin-center after:h-[1px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]" target="_blank">"le secteur de l'eau au maroc"</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="p-4 rounded-lg  hidden" id="assainissement" role="tabpanel" aria-labelledby="assainissement-tab">
+                                          <div class="flex items-center justify-between">
+                                            <h1 class=" font-semibold text-cyan-700 mb-4 underline text-2xl hidden md:flex">Définitions</h1>
+                                            <button (click)=" downloadInc(6)" class="group relative h-12 w-60 overflow-hidden rounded-lg bg-white shadow border">
+                                              <div class="absolute inset-0 w-3 bg-cyan-600 transition-all duration-[300ms] ease-out group-hover:w-full"></div>
+                                              <span class="relative text-black group-hover:text-white"><i class="fa-solid fa-download"></i> Télécharger le résumé</span>
+                                            </button>
+                                          </div>
+                                          <div class="overflow-x-auto my-4">
+                                            <table class="table">
+                                              <!-- head -->
+                                              <tbody>
+                                                <!-- row 1 -->
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Assainissement </td>
+                                                  <td>Ensemble des techniques et des ouvrages destinés à collecter, traiter et évacuer les eaux usées et les déchets, afin de préserver la santé publique et l'environnement.</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Réseau d'assainissement</td>
+                                                  <td>Ensemble de canalisations qui collectent les eaux usées et les conduisent vers une station d'épuration ou un autre point de rejet.</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Déversoir d'orage</td>
+                                                  <td>Ouvrage permettant de déverser une partie des eaux usées brutes en cas de fortes pluies, afin d'éviter le débordement des réseaux.</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Eaux pluviales</td>
+                                                  <td>Eaux de pluie qui ruissellent sur les surfaces imperméabilisées.</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Système unitaire</td>
+                                                  <td>: toutes les eaux sont recueillies dans un réseau unique de collecte qui
+                                                    aboutit à une station d’épuration.</td>
+                                                </tr>
+                                                <!-- row 2 -->
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Système séparatif</td>
+                                                  <td>comprend un réseau pluvial et un réseau d’eaux usées domestiques.</td>
+                                                </tr>
+                                                <!-- row 3 -->
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Averse</td>
+                                                  <td>précipitation continue dont la durée peut varier de quelques minutes à
+                                                    plusieurs heures.
+                                                    </td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Averse type</td>
+                                                  <td>averse exceptionnelle qui intervient selon une probabilité déterminée:
+                                                    période de retour 10 ans, 100 ans...etc.</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+
+                                            <h1 class=" font-semibold text-cyan-700  underline text-2xl mt-10">Programme National d’Assainissement Liquide (PNA)</h1>
+                                            <div class="flex items-center justify-center my-5">
+                                              <p class="my-3">Le Programme National d’Assainissement Liquide et d’Epuration des Eaux Usées (PNA) a été lancé en 2005, conjointement par le Secrétariat d’Etat chargé du Développement Durable, le Ministère de l'Intérieur et le Ministère d’Economie et de Finance.</p>
+                                              <p class="my-3"></p>
+
+                                            </div>
+                                            <div class="flex gap-5 items-center mt-5">
+                                              <p class="underline font-bold text-sm">Lire plus >>></p>
+                                              <a href="../assets/STRATEGIE_EAU.pdf" class="relative text-black hover:text-gray-400 cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-700 before:absolute before:bg-gray-400 before:origin-center before:h-[1px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-700 after:absolute after:bg-gray-400 after:origin-center after:h-[1px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]" target="_blank">"stratégie de l'eau au maroc"</a>
+                                            </div>
+
+                                          </div>
+                                        </div>
+                                        <div class="p-4 rounded-lg  hidden" id="epuration" role="tabpanel" aria-labelledby="epuration-tab">
+                                          <div class="flex items-center justify-between">
+                                            <h1 class=" font-semibold text-cyan-700 mb-4 underline text-2xl hidden md:flex">Définitions</h1>
+                                            <button (click)=" downloadInc(8)" class="group relative h-12 w-60 overflow-hidden rounded-lg bg-white shadow border">
+                                              <div class="absolute inset-0 w-3 bg-cyan-600 transition-all duration-[300ms] ease-out group-hover:w-full"></div>
+                                              <span class="relative text-black group-hover:text-white"><i class="fa-solid fa-download"></i> Télécharger le résumé</span>
+                                            </button>
+                                          </div>
+                                          <div class="overflow-x-auto my-4">
+                                            <table class="table">
+                                              <!-- head -->
+                                              <tbody>
+                                                <!-- row 1 -->
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Épuration des eaux usées</td>
+                                                  <td>Ensemble de procédés visant à dépolluer les eaux usées avant leur rejet dans le milieu naturel ou leur réutilisation. L'objectif est de réduire la pollution et de préserver les ressources en eau.</td>
+                                                </tr>
+                                                <!-- row 2 -->
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Station d'épuration</td>
+                                                  <td>Installation où sont traitées les eaux usées. Elle utilise différents procédés physiques, chimiques et biologiques pour éliminer les polluants.</td>
+                                                </tr>
+                                                <!-- row 3 -->
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Matières en suspension (MES)</td>
+                                                  <td>Particules solides non dissoutes présentes dans l'eau, comme les boues, les sédiments ou les particules organiques.
+                                                    </td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Matières organiques</td>
+                                                  <td>Substances d'origine biologique, comme les matières fécales, les résidus alimentaires, les feuilles, etc. Elles sont dégradées par des micro-organismes lors du traitement..</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Demande biochimique en oxygène (DBO)</td>
+                                                  <td>Quantité d'oxygène consommée par les micro-organismes pour dégrader la matière organique présente dans l'eau. Elle est utilisée pour évaluer la charge polluante.</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">DCO (Demande Chimique en Oxygène)</td>
+                                                  <td>Quantité d'oxygène nécessaire pour oxyder toute la matière organique et minérale oxydable.</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Traitement biologique </td>
+                                                  <td>Utilise des micro-organismes pour dégrader la matière organique.</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Traitement physico-chimique</td>
+                                                  <td>Utilise des procédés physiques (filtration, sédimentation) et chimiques (coagulation, floculation) pour éliminer les polluants.</td>
+                                                </tr>
+                                                <tr class="hover">
+                                                  <td class="font-semibold">Lagunage</td>
+                                                  <td>Technique d'épuration naturelle utilisant des bassins peu profonds où les eaux usées sont soumises à l'action du soleil, des bactéries et des plantes.</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+
+                                            <h1 class=" font-semibold text-cyan-700  underline text-2xl mt-10">Le fonctionnement d’une station d’épuration des eaux usées</h1>
+                                            <div class="flex items-center justify-center my-5">
+                                              <p class="my-3">Une station d’épuration est généralement située à l’extrémité d’un réseau de collecte. Elle va utiliser divers processus et dispositifs physiques et biochimiques pour dégrader les matières organiques et les séparer de l’eau.</p>
+                                            </div>
+                                            <div class="flex items-center justify-center">
+                                              <img src="../assets/SE.png" class="p-10" alt="">
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            <footer class="text-sm  bg-cyan-800 w-full px-24">
+                              <div class="py-4  sm:flex justify-between text-slate-100">
+                                  <div class="mb-6 sm:mb-0 sm:flex">
+                                      <p class="f4">All Rights Reserved</p>
+                                      <p class="sm:ml-4 sm:pl-4 sm:border-l sm:border-slate-200">
+                                        <a class="hover:text-slate-900 f2" href="/brand">Plongez dans l'univers de l'hydraulique</a>
+                                      </p>
+                                  </div>
+                                  <div class="flex space-x-10 text-cyan-500 text-xl">
+                                    <a href="https://www.linkedin.com/in/bilal-izem-267284175" class="hover:text-cyan-300" target="_blank" rel="noopener noreferrer">
+                                      <i class="fa-brands fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/bilal-izem" class="hover:text-cyan-300" class="hover:text-cyan-300" target="_blank" rel="noopener noreferrer">
+                                      <i class="fa-brands fa-square-github"></i>
+                                    </a>
+                                  </div>
+                              </div>
+                            </footer>
+                          </dialog>
+                          <dialog id="faq" class="modal flex flex-col min-h-screen">
+                            <div class="  bg-white  shadow-lg overflow-y-auto h-full w-full ">
+                              <!-- Modal Header -->
+                              <div class="fixed  top-0 left-0 right-0 z-50 flex justify-between items-center border-b-4 bg-white shadow-md px-10 border-cyan-700">
+                                <h2 class="text-5xl font-bold text-cyan-700 f2">FAQs</h2>
+
+                                <button onclick="document.getElementById('faq').close()" class="p-2 cursor-pointer">
+                                  <i class="fa-solid fa-square-xmark text-4xl text-red-300 hover:text-red-400 transition duration-200"></i>
+                                </button>
+                              </div>
+
+                              <div class="pt-20">
+                                <div class="sticky overflow-auto max-h-[80vh] ">
+                                  <div class="text-center mb-10 text-5xl">
+                                    <h3 class="text-slate-700 f3">
+                                        Frequently Asked <span class=" font-medium text-sky-600 f3">Questions</span>
+                                    </h3>
+                                  </div>
+                                          <div class="mt-4 flex border p-4 mx-4 md:mx-8 lg:mx-56 my-10  duration-300 transition-all rounded-lg hover:shadow-md group" *ngFor="let faq of Faqs">
+                                                <div class="">
+                                                    <div class="flex items-center h-16 border-l-4 border-sky-600">
+                                                        <span class="text-4xl text-sky-600 px-4">Q.</span>
+                                                    </div>
+                                                    <div class="flex items-center h-16 border-l-4 border-gray-400">
+                                                        <span class="text-4xl text-gray-400 px-4">A.</span>
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    <div class="flex items-center h-16 group-hover:translate-x-3 duration-300">
+                                                        <span class="text-lg text-sky-600 font-bold ">{{faq.Q}}</span>
+                                                    </div>
+                                                    <div class="flex items-center py-2">
+                                                        <span class="text-gray-500">{{faq.R}}</span>
+                                                    </div>
+                                                    <div class="flex items-center justify-center">
+                                                      <img src="../assets/faq/{{faq.id}}.png" class="w-auto h-44"  alt="">
+                                                    </div>
+                                                </div>
+                                          </div>
+                                </div>
+
+                              </div>
+
+                            </div>
+                            <footer class="text-sm  bg-cyan-800 w-full px-24">
+                              <div class="py-4  sm:flex justify-between items-center text-slate-100">
+                                  <div class="mb-6 sm:mb-0 sm:flex">
+                                      <p class="f4">All Rights Reserved</p>
+                                      <p class="sm:ml-4 sm:pl-4 sm:border-l sm:border-slate-200">
+                                        <a class="hover:text-slate-900 f2" href="/brand">Plongez dans l'univers de l'hydraulique</a>
+                                      </p>
+                                  </div>
+                                  <div class="flex space-x-10 text-cyan-500 text-xl">
+                                    <a href="https://www.linkedin.com/in/bilal-izem-267284175" class="hover:text-cyan-300" target="_blank" rel="noopener noreferrer">
+                                      <i class="fa-brands fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/bilal-izem" class="hover:text-cyan-300" class="hover:text-cyan-300" target="_blank" rel="noopener noreferrer">
+                                      <i class="fa-brands fa-square-github"></i>
+                                    </a>
+                                  </div>
+                              </div>
+                            </footer>
+                          </dialog>
+                          <dialog id="liens" class="modal flex flex-col min-h-screen">
+                            <div class="  bg-white  shadow-lg overflow-y-auto h-full w-full ">
+                              <div class="fixed  top-0 left-0 right-0 z-50 flex justify-between items-center border-b-4 bg-white shadow-md px-10 border-cyan-700">
+                                    <h2 class="text-5xl font-bold text-cyan-700 f2">Liens Utiles</h2>
+                                    <button onclick="document.getElementById('liens').close()" class="p-2 cursor-pointer">
+                                      <i class="fa-solid fa-square-xmark text-4xl text-red-300 hover:text-red-400 transition duration-200"></i>
+                                    </button>
+                              </div>
+                              <div class=" w-full flex flex-row gap-5 px-3 md:px-6 lg:px-10 md:flex-row">
+                                <div class="hidden md:w-1/3 lg:w-1/4 py-4 md:block m-2 gap-2">
+                                  <div class="top-20 p-2 m-4 rounded-xl flex flex-wrap gap-2 pt-20">
+                                    <h1 class="text-xl text-black font-bold f3">Tags :</h1>
+                                    <button class="border rounded-md p-1 hover:scale-105 transition duration-300" *ngFor="let elem of categories" (click)="selectCategory(elem.cat)">
+                                      {{elem.cat}}
+                                    </button>
+                                  </div>
+                                </div>
+
+
+
+
+
+                                <div class="md:w-2/3 lg:w-3/4 w-full max-h-screen overflow-y-auto mt-16 ">
+                                  <div class="drawer flex md:hidden z-40">
+                                    <input id="my-drawer2" type="checkbox" class="drawer-toggle" />
+                                    <div class="drawer-content">
+                                      <label for="my-drawer2" class="btn bg-white m-5 border border-sky-500 text-sky-500 hover:bg-white drawer-button ">
+                                        <span>
+                                          Choisir votre cours
+                                      </span>
+                                      <svg class="w-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          viewBox="0 0 24 24" class="w-6 h-6 ml-2">
+                                          <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                      </svg>
+                                      </label>
+                                    </div>
+                                    <div class="drawer-side pt-10">
+                                      <label for="my-drawer2" aria-label="close sidebar" class="drawer-overlay"></label>
+                                      <ul class="menu bg-slate-200 text-base-content min-h-full w-80 p-4 ">
+                                        <ul class="sticky top-12 flex flex-col gap-2 p-2 rounded-xl" id="myTab2" data-tabs-toggle="#myTabContent2" role="tablist">
+                                          <li role="presentation" class="border-sky-500 border p-2 rounded-lg bg-white shadow-md" *ngFor="let elem of categories">
+                                            <button class="" id="aep-tab" data-tabs-target="#aep" type="button" role="tab" aria-controls="aep" aria-selected="true" (click)="selectCategory(elem.cat)">
+                                              {{elem.cat}}
+                                            </button>
+                                          </li>
+                                        </ul>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                    <div id="myTabContent2" class="w-full max-h-[80vh] sticky overflow-y-auto bg-white p-2 md:p-4">
+                                        <div class="p-4 rounded-lg  hidden" id="aep" role="tabpanel" aria-labelledby="aep-tab">
+                                          <div class=" overflow-x-auto my-4">
+
+                                            <div *ngFor="let lien of filteredItems"  class="flex gap-3 bg-slate-100 p-2 mb-5  rounded-xl overflow-hidden items-center justify-start hover:shadow-md group transition-all duration-300">
+                                              <div class="relative w-32 h-32">
+                                                  <img class="absolute left-0 top-0 w-full h-full rounded-md shadow-md object-cover object-center " src="../assets/lien/{{lien.id}}.png">
+                                              </div>
+                                              <div class="flex flex-col gap-2 pt-2">
+                                                  <p class="text-2xl font-bold f3">{{lien.title}}</p>
+                                                  <p class="text-gray-500 f5">
+                                                      {{lien.desc}}
+                                                  </p>
+                                                  <span class="flex items-center justify-start text-sky-700 group-hover:translate-x-2 duration-300 transition-all tracking-wide font-bold">
+                                                      <svg class="w-4 h-4 mr-1 mt-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                          <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"></path>
+                                                      </svg>
+                                                      <button (click)="openDocument(lien.pdfUrl)">lire plus</button>
+                                                  </span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <footer class="text-sm  bg-cyan-800 w-full px-24">
+                              <div class="py-4  sm:flex justify-between items-center text-slate-100">
+                                  <div class="mb-6 sm:mb-0 sm:flex">
+                                      <p class="f4">All Rights Reserved</p>
+                                      <p class="sm:ml-4 sm:pl-4 sm:border-l sm:border-slate-200">
+                                        <a class="hover:text-slate-900 f2" href="/brand">Plongez dans l'univers de l'hydraulique</a>
+                                      </p>
+                                  </div>
+                                  <div class="flex space-x-10 text-cyan-500 text-xl">
+                                    <a href="https://www.linkedin.com/in/bilal-izem-267284175" class="hover:text-cyan-300" target="_blank" rel="noopener noreferrer">
+                                      <i class="fa-brands fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/bilal-izem" class="hover:text-cyan-300" class="hover:text-cyan-300" target="_blank" rel="noopener noreferrer">
+                                      <i class="fa-brands fa-square-github"></i>
+                                    </a>
+                                  </div>
+                              </div>
+                            </footer>
+                          </dialog>
+
+                          <div>
+                            <button onclick="mod1.showModal()"  class="block">
+                              <h1 class="f4 font-bold text-start text-sky-600 border-sky-600">
+                                BILAL IZEM
+                                <br>
+                                <span class="f4 font-light text-xs text-slate-800 block">
+                                  Hydraulic Engineer <i class="fa-solid fa-droplet text-xs text-sky-600"></i>
+                                </span>
+                              </h1>
+                            </button>
+                            <dialog id="mod1" class="modal">
+                              <div class="modal-box ">
+                                <section class="px-4 py-10 mx-auto max-w-7xl flex items-center justify-center flex-col gap-10 bg-sky-50 rounded-lg border shadow-md wall2">
+                                  <div class="w-full mx-auto md:w-5/6 flex items-center justify-center flex-col gap-5">
+                                    <div class=" md:text-center">
+                                      <p class="mb-10 text-xs font-bold tracking-widest text-sky-700 uppercase text-center">Bienvenue sur notre site</p>
+                                      <h1 class="mb-10 font-serif text-xl italic font-thin text-slate-800 md:leading-snug md:text-2xl text-center">
+                                        “Explorez les différentes sections de ce site pour découvrir des cours, des outils et des ressources utiles dans le domaine de l'hydraulique. N'hésitez pas à me contacter pour toute question ou pour obtenir davantage d'informations sur les projets sur lesquels je travaille.”
+                                      </h1>
+                                    </div>
+                                    <div class="flex items-center justify-start md:justify-center">
+                                      <div class="flex items-center">
+                                        <div class="avatar rounded-full w-16 h-16 overflow-hidden border border-sky-600">
+                                          <img src="../assets/avatar.png" class="w-full h-full object-cover rounded-full" alt="Photo de Profil" />
+                                        </div>
+                                      </div>
+                                      <button class="ml-4">
+                                        <h1 class="f4 font-bold text-start text-sky-600">
+                                          BILAL IZEM
+                                          <br>
+                                          <span class="f4 font-normal text-xs text-slate-800 hidden md:block">
+                                            Hydraulic Engineer <i class="fa-solid fa-droplet text-xs text-sky-600"></i>
+                                          </span>
+                                        </h1>
+                                      </button>
+                                    </div>
+
+                                  </div>
+                                </section>
+
+
+                              </div>
+                              <form method="dialog" class="modal-backdrop">
+                                <button>close</button>
+                              </form>
+                            </dialog>
+                          </div>
+
+                          <div class="hidden lg:flex gap-8 mx-4">
+                              <button class="p-2  rounded-lg text-white bg-sky-700 hover:bg-sky-500 transition duration-300 shadow-lg" onclick="document.getElementById('cours').showModal()">Cours</button>
+                              <button class="p-2  rounded-lg text-white bg-sky-700  hover:bg-sky-500 transition duration-300 shadow-lg" onclick="document.getElementById('exercices').showModal()">Exercices</button>                          <!-- Modal -->
+                              <button class="p-2 rounded-lg text-white bg-sky-700 hover:bg-sky-500 transition duration-300 shadow-lg" onclick="document.getElementById('incontournables').showModal()">Les Incontournables</button>
+                              <button class="p-2  rounded-lg text-white bg-sky-700  hover:bg-sky-500 transition duration-300 shadow-lg" onclick="document.getElementById('faq').showModal()">FAQs</button>
+                              <button class="p-2  rounded-lg text-white bg-sky-700 hover:bg-sky-500 transition duration-300 shadow-lg" onclick="document.getElementById('liens').showModal()">Liens Utiles</button>
+                          </div>
+
+                          <div class="flex items-center justify-center space-x-10">
+                            <div class="flex items-center justify-center space-x-6">
+                              <button class="tooltip" data-tip="Epanet Online" >
+                                <a href="https://tethys.byu.edu/apps/epanet-model-viewer/" target="_blank">
+                                  <img src="../assets/epa.png" class="w-6 h-6" alt="">
+                                </a>
+                              </button>
+                              <button class="tooltip" data-tip="Hydraulic Model Viewer" onclick="document.getElementById('view').showModal()"><i class="fa-solid fa-map text-sm text-slate-700"></i></button>
+                              <dialog id="view" class="modal" >
+                                <div class="h-full p-5 w-8/9 sm:w-5/6 bg-white border-t-8 border-black ">
+                                  <div class="flex flex-col items-center justify-center h-full">
+                                    <div class="flex w-full h-auto justify-between items-center">
+                                      <div class="w-full sm:w-10/12 h-auto py-3 text-2xl font-bold tracking-wider text-black f5">
+                                        <i class="fa-solid fa-brain"></i> Online Model View
+                                      </div>
+                                      <div onclick="document.getElementById('view').close()" class="p-2 text-red-500 rounded-md hover:shadow-md transition duration-300 border cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                      </div>
+                                    </div>
+                                    <div class="w-full h-full justify-center items-center border rounded-md text-center">
+                                      <iframe [src]="safeUrl1" class="w-full h-full" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </dialog>
+                              <button class="tooltip" data-tip="Calculatrice" onclick="document.getElementById('calc').showModal()"><i class="fa-solid fa-calculator text-sm text-slate-700"></i></button>
+                              <dialog id="calc" class="modal" >
+                                <div class="h-auto w-11/12 md:w-1/2 p-5 bg-white rounded-md border-t-8 border-sky-500">
+                                    <div class="flex flex-col w-full h-auto ">
+                                        <div class="flex w-full h-auto justify-between items-center">
+                                          <div class="w-10/12 h-auto py-3 text-2xl font-bold text-sky-500">
+                                            <i class="fa-solid fa-calculator "></i>  Calculatrice
+                                          </div>
+                                          <div onclick="document.getElementById('calc').close()" class="p-2 text-red-500 rounded border hover:shadow-md  duration-300 cursor-pointer">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                          </div>
+                                        </div>
+                                        <div class="flex w-full h-auto py-10 px-2 justify-center items-center rounded-md border text-center text-gray-500">
+                                          <div class="p-4 max-w-sm mx-auto bg-white rounded-md border hover:shadow-lg duration-300 space-y-4">
+                                            <input type="number" [(ngModel)]="num1" class="w-full p-2 border rounded-md" placeholder="Nombre 1" />
+                                            <input type="number" [(ngModel)]="num2" class="w-full p-2 border rounded-md" placeholder="Nombre 2" />
+                                            <div class="flex justify-around">
+                                              <button (click)="add()" class=" text-cyan-700 py-2 px-4 border rounded-md font-bold">+</button>
+                                              <button (click)="subtract()" class=" text-cyan-700 py-2 px-4 border rounded-md font-bold">-</button>
+                                              <button (click)="multiply()" class="text-cyan-700 py-2 px-4 border rounded-md font-bold">*</button>
+                                              <button (click)="divide()" class=" text-cyan-700 py-2 px-4 border rounded-md font-bold">/</button>
+                                              <button (click)="reset()" class=" text-red-700 py-2 px-4 border rounded-md font-bold">C</button>
+                                            </div>
+                                            <p class="text-lg font-bold p-2 rounded ">=</p>
+                                            <p class="text-lg font-bold p-2 rounded-md border bg-sky-50 h-10 w-auto text-center">{{ result }}</p>
+
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </dialog>
+                              <button class="tooltip" data-tip="Convertisseur d'unités" onclick="document.getElementById('conv').showModal()"><i class="fa-solid fa-rotate text-sm text-slate-700"></i></button>
+                              <dialog id="conv" class="modal" >
+                                <div class="h-auto w-11/12 md:w-1/2 p-5 bg-white rounded-md border-t-8 border-sky-500">
+                                    <div class="flex flex-col w-full h-auto ">
+                                        <div class="flex w-full h-auto justify-between items-center">
+                                          <div class="w-10/12 h-auto py-3 text-2xl font-bold text-sky-500">
+                                            <i class="fa-solid fa-rotate"></i> Convertisseur d'unités
+                                          </div>
+                                          <div onclick="document.getElementById('conv').close()" class="p-2 text-red-500 rounded border hover:shadow-md duration-300 cursor-pointer">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                          </div>
+                                        </div>
+                                          <div class="flex w-full h-auto py-10 px-2 justify-center items-center border rounded-md text-center text-gray-500">
+                                            <div class="p-6 max-w-sm mx-auto bg-white border duration-300 rounded-md hover:shadow-md space-y-4" id="pression">
+                                              <h2 class="text-xl font-bold text-gray-700">Pression</h2>
+
+                                              <div class="mb-4">
+                                                <label class="block text-gray-600">Valeur :</label>
+                                                <input type="number" [(ngModel)]="value" class="w-full p-2 border rounded-md" placeholder="Entrez une valeur" />
+                                              </div>
+
+                                              <div class="mb-4">
+                                                <label class="block text-gray-600">Unité source :</label>
+                                                <select [(ngModel)]="sourceUnit" class="w-full p-2 border rounded-md">
+                                                  <option value="Pa">Pa</option>
+                                                  <option value="bar">Bar</option>
+                                                  <option value="atm">Atm</option>
+                                                </select>
+                                              </div>
+
+                                              <div class="mb-4">
+                                                <label class="block text-gray-600">Unité cible :</label>
+                                                <select [(ngModel)]="targetUnit" class="w-full p-2 border rounded-md">
+                                                  <option value="Pa">Pa</option>
+                                                  <option value="bar">Bar</option>
+                                                  <option value="atm">Atm</option>
+                                                </select>
+                                              </div>
+
+                                              <button (click)="convert()" class=" text-sky-700 border font-bold hover:bg-slate-100 transition duration-200 p-2 rounded-md ">Convertir</button>
+
+                                              <div class="mt-4">
+                                                <p class="text-lg font-bold">Résultat : <br>{{ result2 }} {{ targetUnit }}</p>
+                                              </div>
+                                            </div>
+                                            <div class="p-6 max-w-sm mx-auto bg-white rounded-md border duration-300 hover:shadow-md space-y-4" id="debit">
+                                              <h2 class="text-xl font-bold text-gray-700">Débit</h2>
+
+                                              <div class="mb-4">
+                                                <label class="block text-gray-600">Valeur :</label>
+                                                <input type="number" [(ngModel)]="value2" class="w-full p-2 border rounded-md" placeholder="Entrez une valeur" />
+                                              </div>
+
+                                              <div class="mb-4">
+                                                <label class="block text-gray-600">Unité source :</label>
+                                                <select [(ngModel)]="sourceUnit2" class="w-full p-2 border rounded-md">
+                                                  <option value="L/s">(L/s)</option>
+                                                  <option value="m³/j">(m³/j)</option>
+                                                  <option value="m³/s">(m³/s)</option>
+                                                  <option value="L/min">(L/min)</option>
+                                                </select>
+                                              </div>
+
+                                              <div class="mb-4">
+                                                <label class="block text-gray-600">Unité cible :</label>
+                                                <select [(ngModel)]="targetUnit2" class="w-full p-2 border rounded-md">
+                                                  <option value="L/s">(L/s)</option>
+                                                  <option value="m³/j">(m³/j)</option>
+                                                  <option value="m³/s">(m³/s)</option>
+                                                  <option value="L/min">(L/min)</option>
+                                                </select>
+                                              </div>
+
+                                              <button (click)="convert2()" class="text-sky-700 border font-bold hover:bg-slate-100 transition duration-200 p-2 rounded-md ">Convertir</button>
+
+                                              <div class="mt-4">
+                                                <p class="text-lg font-bold">Résultat : <br>{{ result3 }} {{ targetUnit2 }}</p>
+                                              </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                              </dialog>
+                            </div>
+
+                            <div class="flex space-x-5 text-sky-600 text-xl">
+                              <a href="https://www.linkedin.com/in/bilal-izem-267284175" class="hover:text-sky-400 transition duration-200" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-linkedin"></i>
+                              </a>
+                              <a href="https://github.com/bilal-izem"  class="hover:text-sky-400 transition duration-200" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-square-github"></i>
+                              </a>
+                              <button class="tooltip text-xl text-sky-600 hover:text-sky-400 transition duration-200" data-tip="Contact" onclick="document.getElementById('mod5').showModal()"><i class="fa-solid fa-square-envelope"></i></button>
+                              <dialog id="mod5" class="modal" >
+                              <div class="h-auto w-11/12 md:w-1/2 p-5 bg-white rounded-md ">
+                                  <div class="flex flex-col w-full h-auto ">
+                                      <div class="flex w-full h-auto justify-between items-center">
+                                        <div class="w-10/12 h-auto py-3 text-2xl font-bold text-cyan-700">
+                                              Conatct
+                                        </div>
+                                        <div onclick="document.getElementById('mod5').close()" class="p-2 text-red-500 rounded bg-red-200 cursor-pointer">
+                                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                        </div>
+                                      </div>
+                                      <div class="flex py-10 px-2 justify-center items-center bg-blue-100 rounded text-center text-gray-500">
+                                        <div class="bg-blue-900 p-10 rounded-lg shadow-lg">
+                                          <h2 class="mb-10 font-bold text-3xl text-blue-100 before:block before:absolute before:bg-sky-300 before:content[''] relative before:w-20 before:h-1 before:-skew-y-3 before:-bottom-4">Infos Contact</h2>
+                                          <p class="font-bold text-blue-100 py-4 border-b border-blue-700">
+                                            Phone Number
+                                            <span class="font-normal text-xs text-blue-300 block">+212 6 26 85 71 24</span>
+                                          </p>
+                                          <p class="font-bold text-blue-100 py-4 border-b border-blue-700">
+                                            Email Address
+                                            <span class="font-normal text-xs text-blue-300 block">bilalizemizm.bi@gmail.com</span>
+                                            <a href="mailto:bilalizemizem.bi@gmail.com"  class="hover:text-sky-400 text-xs transition duration-200 f1" target="_blank" rel="noopener noreferrer">
+                                              <i class="fa-solid fa-paper-plane"></i>
+                                              envoyer un mail
+                                            </a>
+                                          </p>
+                                          <p class="font-bold text-blue-100 py-4 border-b border-blue-700">
+                                            Web Address
+                                            <span class="font-normal text-xs text-blue-300 block">sooooooon</span>
+                                          </p>
+                                          <button>
+
+                                          </button>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              </dialog>
+                            </div>
+
+                            <div class="dropdown dropdown-left  flex items-center justify-center">
+                              <div tabindex="0" role="button" class="m-2 text-lg px-2 text-sky-400 rounded border border-sky-500 hover:text-sky-600 duration-200 transition-all tooltip " data-tip="Demarrer"><i class="fa-solid fa-bars"></i></div>
+                              <ul tabindex="0" class="dropdown-content menu bg-sky-100 rounded-box z-[1] w-52 p-2 shadow border border-sky-500">
+                                <li onclick="document.getElementById('cours').showModal()"><a>Cours</a></li>
+                                <li onclick="document.getElementById('exercices').showModal()"><a>Exercices</a></li>
+                                <li onclick="document.getElementById('incontournables').showModal()"><a>Les incontournables</a></li>
+                                <li onclick="document.getElementById('faq').showModal()"><a>FAQs</a></li>
+                                <li onclick="document.getElementById('liens').showModal()"><a>Liens Utiles</a></li>
+                              </ul>
+                            </div>
+
+                          </div>
+              </nav>
+
+
+              <div class="flex flex-col items-center justify-center px-4">
+                          <section class="max-w-7xl mx-auto">
+                            <div class="w-full md:w-5/6 mx-auto text-center flex items-center justify-center flex-col">
+                              <img src="../assets/w5.png" class="w-96" alt="">
+                              <h1 class="text-lg md:text-2xl lg:text-4xl font-serif italic  font-thin bg-clip-text text-transparent bg-gradient-to-r from-sky-700 to-cyan-500 leading-relaxed">
+                                “Explorez, apprenez et maîtrisez les principes fondamentaux de l'hydraulique avec des ressources et des outils éducatifs spécialement conçus pour les étudiants et les passionnés.”
+                              </h1>
+                              <h1 class="text-lg font-bold  text-center f2 text-sky-900 mt-5">Plongez dans l'univers de l'hydraulique</h1>
+                            </div>
+                          </section>
+              </div>
+
+
+        </div>
+</div>
