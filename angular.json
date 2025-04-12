@@ -35,7 +35,6 @@
           },
           "configurations": {
             "production": {
-
               "budgets": [
 
 
@@ -97,9 +96,6 @@
               "src/**/*.html"
             ]
           }
-        },
-        "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

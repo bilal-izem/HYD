@@ -529,7 +529,13 @@ selectCategory(category: string) {
 }
 
 
+imgs =[
+  {name:"1"},
+  {name:"2"},
+  {name:"3"},
+  {name:"4"},
 
+]
 
 
 }
